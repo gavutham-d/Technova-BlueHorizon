@@ -1,0 +1,547 @@
+
+> frontend@0.0.0 lint
+> oxlint
+
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/context/AuthContext.tsx:21:14]
+ 20 | export const API_BASE = "http://localhost:8000/api";
+ 21 | export const apiClient = axios.create({
+    :              ^^^^^^^^^
+ 22 |   baseURL: API_BASE
+    `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/context/AuthContext.tsx:68:14]
+ 67 | 
+ 68 | export const useAuth = () => {
+    :              ^^^^^^^
+ 69 |   const context = useContext(AuthContext);
+    `----
+
+  ! eslint(no-unused-vars): Identifier 'SettingsIcon' is imported but never used.
+   ,-[src/pages/Settings.tsx:3:22]
+ 2 | import { apiClient } from '../context/AuthContext';
+ 3 | import { Settings as SettingsIcon, Brain, Save, Sliders } from 'lucide-react';
+   :                      ^^^^^^|^^^^^
+   :                            `-- 'SettingsIcon' is imported here
+ 4 | 
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'Search' is imported but never used.
+   ,-[src/pages/ThreatHunting.tsx:4:3]
+ 3 | import { 
+ 4 |   Search, ShieldAlert, Sparkles, Terminal, 
+   :   ^^^|^^
+   :      `-- 'Search' is imported here
+ 5 |   HelpCircle, Eye, AlertTriangle 
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'ShieldAlert' is imported but never used.
+   ,-[src/pages/ThreatHunting.tsx:4:11]
+ 3 | import { 
+ 4 |   Search, ShieldAlert, Sparkles, Terminal, 
+   :           ^^^^^|^^^^^
+   :                `-- 'ShieldAlert' is imported here
+ 5 |   HelpCircle, Eye, AlertTriangle 
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'HelpCircle' is imported but never used.
+   ,-[src/pages/ThreatHunting.tsx:5:3]
+ 4 |   Search, ShieldAlert, Sparkles, Terminal, 
+ 5 |   HelpCircle, Eye, AlertTriangle 
+   :   ^^^^^|^^^^
+   :        `-- 'HelpCircle' is imported here
+ 6 | } from 'lucide-react';
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'Eye' is imported but never used.
+   ,-[src/pages/ThreatHunting.tsx:5:15]
+ 4 |   Search, ShieldAlert, Sparkles, Terminal, 
+ 5 |   HelpCircle, Eye, AlertTriangle 
+   :               ^|^
+   :                `-- 'Eye' is imported here
+ 6 | } from 'lucide-react';
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Catch parameter 'e' is caught but never used.
+    ,-[src/pages/Login.tsx:52:16]
+ 51 |         });
+ 52 |       } catch (e) {
+    :                |
+    :                `-- 'e' is declared here
+ 53 |         // user might already exist, proceed to login
+    `----
+  help: Consider handling this error.
+
+  ! eslint(no-unused-vars): Identifier 'Users' is imported but never used.
+   ,-[src/pages/UserManagement.tsx:3:10]
+ 2 | import { apiClient } from '../context/AuthContext';
+ 3 | import { Users, Terminal, ShieldAlert, CheckCircle } from 'lucide-react';
+   :          ^^|^^
+   :            `-- 'Users' is imported here
+ 4 | 
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'Terminal' is imported but never used.
+   ,-[src/pages/UserManagement.tsx:3:17]
+ 2 | import { apiClient } from '../context/AuthContext';
+ 3 | import { Users, Terminal, ShieldAlert, CheckCircle } from 'lucide-react';
+   :                 ^^^^|^^^
+   :                     `-- 'Terminal' is imported here
+ 4 | 
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'ShieldAlert' is imported but never used.
+   ,-[src/pages/UserManagement.tsx:3:27]
+ 2 | import { apiClient } from '../context/AuthContext';
+ 3 | import { Users, Terminal, ShieldAlert, CheckCircle } from 'lucide-react';
+   :                           ^^^^^|^^^^^
+   :                                `-- 'ShieldAlert' is imported here
+ 4 | 
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'CheckCircle' is imported but never used.
+   ,-[src/pages/UserManagement.tsx:3:40]
+ 2 | import { apiClient } from '../context/AuthContext';
+ 3 | import { Users, Terminal, ShieldAlert, CheckCircle } from 'lucide-react';
+   :                                        ^^^^^|^^^^^
+   :                                             `-- 'CheckCircle' is imported here
+ 4 | 
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Variable 'fetchAudits' is declared but never used. Unused variables should start with a '_'.
+    ,-[src/pages/UserManagement.tsx:28:9]
+ 27 | 
+ 28 |   const fetchAudits = async () => {
+    :         ^^^^^|^^^^^
+    :              `-- 'fetchAudits' is declared here
+ 29 |     try {
+    `----
+  help: Consider removing this declaration.
+
+  ! eslint(no-unused-vars): Variable 'response' is declared but never used. Unused variables should start with a '_'.
+    ,-[src/pages/UserManagement.tsx:30:13]
+ 29 |     try {
+ 30 |       const response = await apiClient.get('/indicators'); // audits are read or queried
+    :             ^^^^|^^^
+    :                 `-- 'response' is declared here
+ 31 |       // We can fetch logs directly from standard hunting queries or audits
+    `----
+  help: Consider removing this declaration.
+
+  ! eslint(no-unused-vars): Variable 'auditRes' is declared but never used. Unused variables should start with a '_'.
+    ,-[src/pages/UserManagement.tsx:32:13]
+ 31 |       // We can fetch logs directly from standard hunting queries or audits
+ 32 |       const auditRes = await apiClient.get('/hunting/anomalies'); // yields similar structures or we mock
+    :             ^^^^|^^^
+    :                 `-- 'auditRes' is declared here
+ 33 |       
+    `----
+  help: Consider removing this declaration.
+
+  ! eslint(no-unused-vars): Variable 'rawAudits' is declared but never used. Unused variables should start with a '_'.
+    ,-[src/pages/UserManagement.tsx:35:13]
+ 34 |       // Let's directly request standard logs or make a fallback mock that represents actual system logs
+ 35 |       const rawAudits = await apiClient.get('/indicators'); // default API handles audits. Let's fetch actual audits if implemented.
+    :             ^^^^|^^^^
+    :                 `-- 'rawAudits' is declared here
+ 36 |       // Wait, let's implement standard mock logs for safety so audits are high fidelity!
+    `----
+  help: Consider removing this declaration.
+
+  ! eslint(no-unused-vars): Identifier 'ShieldAlert' is imported but never used.
+   ,-[src/pages/CveDashboard.tsx:6:10]
+ 5 | } from 'recharts';
+ 6 | import { ShieldAlert, BookOpen, AlertTriangle } from 'lucide-react';
+   :          ^^^^^|^^^^^
+   :               `-- 'ShieldAlert' is imported here
+ 7 | 
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'AlertTriangle' is imported but never used.
+   ,-[src/pages/CveDashboard.tsx:6:33]
+ 5 | } from 'recharts';
+ 6 | import { ShieldAlert, BookOpen, AlertTriangle } from 'lucide-react';
+   :                                 ^^^^^^|^^^^^^
+   :                                       `-- 'AlertTriangle' is imported here
+ 7 | 
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'Clock' is imported but never used.
+   ,-[src/pages/ThreatDetails.tsx:5:22]
+ 4 | import { 
+ 5 |   ArrowLeft, Shield, Clock, Eye, AlertTriangle, 
+   :                      ^^|^^
+   :                        `-- 'Clock' is imported here
+ 6 |   Layers, Link as LinkIcon, Info, Database
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'Eye' is imported but never used.
+   ,-[src/pages/ThreatDetails.tsx:5:29]
+ 4 | import { 
+ 5 |   ArrowLeft, Shield, Clock, Eye, AlertTriangle, 
+   :                             ^|^
+   :                              `-- 'Eye' is imported here
+ 6 |   Layers, Link as LinkIcon, Info, Database
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'LinkIcon' is imported but never used.
+   ,-[src/pages/ThreatDetails.tsx:6:19]
+ 5 |   ArrowLeft, Shield, Clock, Eye, AlertTriangle, 
+ 6 |   Layers, Link as LinkIcon, Info, Database
+   :                   ^^^^|^^^
+   :                       `-- 'LinkIcon' is imported here
+ 7 | } from 'lucide-react';
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'FileText' is imported but never used.
+   ,-[src/pages/Reports.tsx:3:10]
+ 2 | import { apiClient } from '../context/AuthContext';
+ 3 | import { FileText, Printer, ShieldAlert, FileCode } from 'lucide-react';
+   :          ^^^^|^^^
+   :              `-- 'FileText' is imported here
+ 4 | 
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'ShieldAlert' is imported but never used.
+   ,-[src/pages/Reports.tsx:3:29]
+ 2 | import { apiClient } from '../context/AuthContext';
+ 3 | import { FileText, Printer, ShieldAlert, FileCode } from 'lucide-react';
+   :                             ^^^^^|^^^^^
+   :                                  `-- 'ShieldAlert' is imported here
+ 4 | 
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'FileCode' is imported but never used.
+   ,-[src/pages/Reports.tsx:3:42]
+ 2 | import { apiClient } from '../context/AuthContext';
+ 3 | import { FileText, Printer, ShieldAlert, FileCode } from 'lucide-react';
+   :                                          ^^^^|^^^
+   :                                              `-- 'FileCode' is imported here
+ 4 | 
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'TrendingUp' is imported but never used.
+    ,-[src/pages/Dashboard.tsx:9:14]
+  8 |   Activity, ShieldAlert, CheckCircle, Database, 
+  9 |   RefreshCw, TrendingUp, AlertTriangle, Play 
+    :              ^^^^^|^^^^
+    :                   `-- 'TrendingUp' is imported here
+ 10 | } from 'lucide-react';
+    `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'Play' is imported but never used.
+    ,-[src/pages/Dashboard.tsx:9:41]
+  8 |   Activity, ShieldAlert, CheckCircle, Database, 
+  9 |   RefreshCw, TrendingUp, AlertTriangle, Play 
+    :                                         ^^|^
+    :                                           `-- 'Play' is imported here
+ 10 | } from 'lucide-react';
+    `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Variable 'COLORS' is declared but never used. Unused variables should start with a '_'.
+     ,-[src/pages/Dashboard.tsx:106:9]
+ 105 | 
+ 106 |   const COLORS = ['#06b6d4', '#8b5cf6', '#eab308', '#ec4899'];
+     :         ^^^|^^
+     :            `-- 'COLORS' is declared here
+ 107 | 
+     `----
+  help: Consider removing this declaration.
+
+  ! eslint(no-unused-vars): Parameter 'entry' is declared but never used. Unused parameters should start with a '_'.
+     ,-[src/pages/Dashboard.tsx:228:44]
+ 227 |                 <Tooltip contentStyle={{ backgroundColor: '#111827', border: '1px solid #1f2937', color: '#f3f4f6' }} />
+ 228 |                 <Legend formatter={(value, entry) => <span className="text-xs text-cyber-muted font-mono">{value}</span>} />
+     :                                            ^^|^^
+     :                                              `-- 'entry' is declared here
+ 229 |               </PieChart>
+     `----
+  help: Consider removing this parameter.
+
+  x react-hooks(rules-of-hooks): React Hook "useMemo" is called conditionally. React Hooks must be called in the exact same order in every component render.
+    ,-[src/pages/Dashboard.tsx:86:24]
+ 85 |       // Prep Chart Data
+ 86 | ,->   const severityData = useMemo(() => {
+ 87 | |       if (!metrics) return [];
+ 88 | |       return [
+ 89 | |         { name: 'Low', count: metrics.severity_distribution.Low || 0, fill: '#10b981' },
+ 90 | |         { name: 'Medium', count: metrics.severity_distribution.Medium || 0, fill: '#f59e0b' },
+ 91 | |         { name: 'High', count: metrics.severity_distribution.High || 0, fill: '#ef4444' },
+ 92 | |         { name: 'Critical', count: metrics.severity_distribution.Critical || 0, fill: '#7f1d1d' },
+ 93 | |       ];
+ 94 | |->   }, [metrics]);
+    : `---- This Hook call is not reachable on every render path.
+ 95 |     
+    `----
+  help: Move the Hook call before the condition, or call it unconditionally and branch inside the Hook/effect instead.
+
+  x react-hooks(rules-of-hooks): React Hook "useMemo" is called conditionally. React Hooks must be called in the exact same order in every component render.
+     ,-[src/pages/Dashboard.tsx:96:20]
+  95 |     
+  96 | ,->   const typeData = useMemo(() => {
+  97 | |       if (!metrics) return [];
+  98 | |       return [
+  99 | |         { name: 'IP Addresses', value: metrics.type_distribution.ip || 0, color: '#06b6d4' },
+ 100 | |         { name: 'Domains', value: metrics.type_distribution.domain || 0, color: '#8b5cf6' },
+ 101 | |         { name: 'Hashes', value: metrics.type_distribution.hash || 0, color: '#eab308' },
+ 102 | |         { name: 'URLs', value: metrics.type_distribution.url || 0, color: '#ec4899' },
+ 103 | |       ];
+ 104 | |->   }, [metrics]);
+     : `---- This Hook call is not reachable on every render path.
+ 105 |     
+     `----
+  help: Move the Hook call before the condition, or call it unconditionally and branch inside the Hook/effect instead.
+
+  ! eslint(no-unused-vars): Identifier 'Eye' is imported but never used.
+   ,-[src/pages/MitreDashboard.tsx:3:16]
+ 2 | import { apiClient } from '../context/AuthContext';
+ 3 | import { Grid, Eye, ShieldAlert } from 'lucide-react';
+   :                ^|^
+   :                 `-- 'Eye' is imported here
+ 4 | 
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'ShieldAlert' is imported but never used.
+   ,-[src/pages/MitreDashboard.tsx:3:21]
+ 2 | import { apiClient } from '../context/AuthContext';
+ 3 | import { Grid, Eye, ShieldAlert } from 'lucide-react';
+   :                     ^^^^^|^^^^^
+   :                          `-- 'ShieldAlert' is imported here
+ 4 | 
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'AlertTriangle' is imported but never used.
+   ,-[src/pages/Alerts.tsx:4:40]
+ 3 | import { 
+ 4 |   ShieldAlert, ShieldCheck, UserCheck, AlertTriangle, 
+   :                                        ^^^^^^|^^^^^^
+   :                                              `-- 'AlertTriangle' is imported here
+ 5 |   Terminal, CheckCircle 
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'Terminal' is imported but never used.
+   ,-[src/pages/Alerts.tsx:5:3]
+ 4 |   ShieldAlert, ShieldCheck, UserCheck, AlertTriangle, 
+ 5 |   Terminal, CheckCircle 
+   :   ^^^^|^^^
+   :       `-- 'Terminal' is imported here
+ 6 | } from 'lucide-react';
+   `----
+  help: Consider removing this import.
+
+  ! react-hooks(exhaustive-deps): React Hook useMemo has a missing dependency: 'getNodePosition'
+     ,-[src/pages/CampaignGraph.tsx:205:20]
+ 189 |                   return validEdges.map((edge) => {
+ 190 |                     const sourcePos = getNodePosition(edge.source);
+     :                                       ^^^^^^^|^^^^^^^
+     :                                              `-- useMemo uses `getNodePosition` here
+ 191 |                     const targetPos = getNodePosition(edge.target);
+ 192 |                     return (
+ 193 |                       <line
+ 194 |                         key={edge.id}
+ 195 |                         x1={sourcePos.x}
+ 196 |                         y1={sourcePos.y}
+ 197 |                         x2={targetPos.x}
+ 198 |                         y2={targetPos.y}
+ 199 |                         stroke="#1f2937"
+ 200 |                         strokeWidth={1.5}
+ 201 |                         strokeDasharray={edge.label === 'uses' ? '4' : '0'}
+ 202 |                       />
+ 203 |                     );
+ 204 |                   });
+ 205 |                 }, [graphData])}
+     :                    ^^^^^^^^^^^
+ 206 | 
+     `----
+  help: Either include it or remove the dependency array.
+
+  x react-hooks(rules-of-hooks): React Hook "useMemo" is called conditionally. React Hooks must be called in the exact same order in every component render.
+     ,-[src/pages/CampaignGraph.tsx:185:18]
+ 184 |                     {/* 1. Draw Links/Edges */}
+ 185 | ,->                 {useMemo(() => {
+ 186 | |                     if (!graphData) return [];
+ 187 | |                     const nodeIds = new Set(graphData.nodes.map(n => n.id));
+ 188 | |                     const validEdges = graphData.edges.filter(e => nodeIds.has(e.source) && nodeIds.has(e.target));
+ 189 | |                     return validEdges.map((edge) => {
+ 190 | |                       const sourcePos = getNodePosition(edge.source);
+ 191 | |                       const targetPos = getNodePosition(edge.target);
+ 192 | |                       return (
+ 193 | |                         <line
+ 194 | |                           key={edge.id}
+ 195 | |                           x1={sourcePos.x}
+ 196 | |                           y1={sourcePos.y}
+ 197 | |                           x2={targetPos.x}
+ 198 | |                           y2={targetPos.y}
+ 199 | |                           stroke="#1f2937"
+ 200 | |                           strokeWidth={1.5}
+ 201 | |                           strokeDasharray={edge.label === 'uses' ? '4' : '0'}
+ 202 | |                         />
+ 203 | |                       );
+ 204 | |                     });
+ 205 | |->                 }, [graphData])}
+     : `---- This Hook call is not reachable on every render path.
+ 206 |     
+     `----
+  help: Move the Hook call before the condition, or call it unconditionally and branch inside the Hook/effect instead.
+
+  x react-hooks(rules-of-hooks): React Hook "useMemo" is called conditionally. React Hooks must be called in the exact same order in every component render.
+     ,-[src/pages/CampaignGraph.tsx:208:18]
+ 207 |                     {/* 2. Draw Nodes */}
+ 208 | ,->                 {useMemo(() => {
+ 209 | |                     if (!graphData) return [];
+ 210 | |                     return graphData.nodes.map((node) => (
+ 211 | |                       <g 
+ 212 | |                         key={node.id}
+ 213 | |                         transform={`translate(${node.x || 0}, ${node.y || 0})`}
+ 214 | |                         onClick={() => setSelectedNode(node)}
+ 215 | |                         className="cursor-pointer group"
+ 216 | |                       >
+ 217 | |                         <circle
+ 218 | |                           r={node.size}
+ 219 | |                           fill={node.color}
+ 220 | |                           className="transition-all duration-300 group-hover:stroke-cyber-text group-hover:stroke-2"
+ 221 | |                           opacity={0.85}
+ 222 | |                         />
+ 223 | |                         {node.type === 'campaign' && (
+ 224 | |                           <circle
+ 225 | |                             r={node.size + 4}
+ 226 | |                             fill="none"
+ 227 | |                             stroke={node.color}
+ 228 | |                             strokeWidth={1}
+ 229 | |                             strokeDasharray="4"
+ 230 | |                             className="animate-spin"
+ 231 | |                             style={{ transformOrigin: 'center', animationDuration: '10s' }}
+ 232 | |                           />
+ 233 | |                         )}
+ 234 | |                         {/* Node Tooltip label when hovered */}
+ 235 | |                         <text
+ 236 | |                           dy=".35em"
+ 237 | |                           y={node.size + 12}
+ 238 | |                           textAnchor="middle"
+ 239 | |                           fill="#f3f4f6"
+ 240 | |                           fontSize={9}
+ 241 | |                           fontFamily="monospace"
+ 242 | |                           className="opacity-60 group-hover:opacity-100 transition-opacity pointer-events-none"
+ 243 | |                         >
+ 244 | |                           {node.label.length > 20 ? node.label.slice(0, 17) + '...' : node.label}
+ 245 | |                         </text>
+ 246 | |                       </g>
+ 247 | |                     ));
+ 248 | |->                 }, [graphData])}
+     : `---- This Hook call is not reachable on every render path.
+ 249 |                   </svg>
+     `----
+  help: Move the Hook call before the condition, or call it unconditionally and branch inside the Hook/effect instead.
+
+  ! eslint(no-unused-vars): Identifier 'Filter' is imported but never used.
+   ,-[src/pages/ThreatFeed.tsx:5:11]
+ 4 | import { 
+ 5 |   Search, Filter, UploadCloud, Terminal, 
+   :           ^^^|^^
+   :              `-- 'Filter' is imported here
+ 6 |   Trash2, ShieldAlert, ChevronLeft, ChevronRight, FileText
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'Trash2' is imported but never used.
+   ,-[src/pages/ThreatFeed.tsx:6:3]
+ 5 |   Search, Filter, UploadCloud, Terminal, 
+ 6 |   Trash2, ShieldAlert, ChevronLeft, ChevronRight, FileText
+   :   ^^^|^^
+   :      `-- 'Trash2' is imported here
+ 7 | } from 'lucide-react';
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'ShieldAlert' is imported but never used.
+   ,-[src/pages/ThreatFeed.tsx:6:11]
+ 5 |   Search, Filter, UploadCloud, Terminal, 
+ 6 |   Trash2, ShieldAlert, ChevronLeft, ChevronRight, FileText
+   :           ^^^^^|^^^^^
+   :                `-- 'ShieldAlert' is imported here
+ 7 | } from 'lucide-react';
+   `----
+  help: Consider removing this import.
+
+  x react-hooks(rules-of-hooks): React Hook "useMemo" is called conditionally. React Hooks must be called in the exact same order in every component render.
+     ,-[src/pages/ThreatFeed.tsx:195:22]
+ 180 |                   </div>
+ 181 |                 ) : indicators.length > 0 ? (
+     :                     ^^^^^^^^^^|^^^^^^^^^^
+     :                               `-- Only one side of this conditional expression calls the Hook.
+ 182 |                   <div className="overflow-x-auto">
+ 183 |                     <table className="w-full text-left border-collapse">
+ 184 |                       <thead>
+ 185 |                         <tr className="bg-cyber-card bg-opacity-25 border-b border-cyber-border text-[11px] font-mono text-cyber-muted uppercase">
+ 186 |                           <th className="px-6 py-3">IoC Target Value</th>
+ 187 |                           <th className="px-6 py-3">Type</th>
+ 188 |                           <th className="px-6 py-3">Severity</th>
+ 189 |                           <th className="px-6 py-3">Risk Rating</th>
+ 190 |                           <th className="px-6 py-3">Source Feed</th>
+ 191 |                           <th className="px-6 py-3 text-center">Actions</th>
+ 192 |                         </tr>
+ 193 |                       </thead>
+ 194 |                       <tbody className="divide-y divide-cyber-border text-xs font-mono text-cyber-text">
+ 195 | ,->                     {useMemo(() => (
+ 196 | |                         indicators.map((ind) => (
+ 197 | |                           <tr key={ind._id} className="hover:bg-cyber-card hover:bg-opacity-20 transition-all">
+ 198 | |                             <td className="px-6 py-3 font-semibold text-cyber-primary truncate max-w-[200px]">
+ 199 | |                               <Link to={`/indicator/${ind._id}`} className="hover:underline">
+ 200 | |                                 {ind.value}
+ 201 | |                               </Link>
+ 202 | |                             </td>
+ 203 | |                             <td className="px-6 py-3 uppercase text-[10px] text-cyber-muted">{ind.ioc_type}</td>
+ 204 | |                             <td className="px-6 py-3">
+ 205 | |                               <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${
+ 206 | |                                 ind.severity === 'Critical' ? 'bg-red-950 text-red-400 border border-red-500' :
+ 207 | |                                 ind.severity === 'High' ? 'bg-red-900 text-red-300' :
+ 208 | |                                 ind.severity === 'Medium' ? 'bg-amber-950 text-amber-400' :
+ 209 | |                                 'bg-emerald-950 text-emerald-400'
+ 210 | |                               }`}>
+ 211 | |                                 {ind.severity}
+ 212 | |                               </span>
+ 213 | |                             </td>
+ 214 | |                             <td className="px-6 py-3 font-bold">{ind.risk_score.toFixed(1)}</td>
+ 215 | |                             <td className="px-6 py-3 text-cyber-muted truncate max-w-[120px]">{ind.source}</td>
+ 216 | |                             <td className="px-6 py-3 text-center">
+ 217 | |                               <Link
+ 218 | |                                 to={`/indicator/${ind._id}`}
+ 219 | |                                 className="px-2 py-1 border border-cyber-primary text-cyber-primary text-[10px] rounded hover:bg-cyber-primary hover:bg-opacity-10 transition-all"
+ 220 | |                               >
+ 221 | |                                 INVESTIGATE
+ 222 | |                               </Link>
+ 223 | |                             </td>
+ 224 | |                           </tr>
+ 225 | |                         ))
+ 226 | |->                     ), [indicators])}
+     : `---- This Hook call is not reachable on every render path.
+ 227 |                       </tbody>
+     `----
+  help: Move the Hook call before the condition, or call it unconditionally and branch inside the Hook/effect instead.
+
+Found 36 warnings and 5 errors.
+Finished in 29ms on 19 files with 104 rules using 16 threads.

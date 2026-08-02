@@ -1,0 +1,23 @@
+[
+  {
+    "value": "45.33.32.156",
+    "ioc_type": "ip",
+    "severity": "Critical",
+    "risk_score": 96.8,
+    "source": "ThreatFox"
+  },
+  {
+    "value": "paypal-login-security.com",
+    "ioc_type": "domain",
+    "severity": "High",
+    "risk_score": 82.5,
+    "source": "URLHaus"
+  },
+  {
+    "value": "http://malicious.example/payload.exe",
+    "ioc_type": "url",
+    "severity": "Critical",
+    "risk_score": 98.1,
+    "source": "AlienVault OTX"
+  }
+]

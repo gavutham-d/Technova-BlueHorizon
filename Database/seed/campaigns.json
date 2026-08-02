@@ -1,0 +1,11 @@
+[
+  {
+    "campaign_name": "Operation Silent Hydra",
+    "actor": "APT29",
+    "techniques": [
+      "T1566",
+      "T1059",
+      "T1071"
+    ]
+  }
+]

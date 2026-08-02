@@ -1,0 +1,14 @@
+[
+  {
+    "indicator_id": "sample-indicator-1",
+    "status": "Unassigned",
+    "assigned_to": "",
+    "trigger_reason": "Matched firewall logs"
+  },
+  {
+    "indicator_id": "sample-indicator-2",
+    "status": "Investigating",
+    "assigned_to": "analyst_soc",
+    "trigger_reason": "High ML Risk Score"
+  }
+]

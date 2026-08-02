@@ -1,0 +1,17 @@
+[
+  {
+    "username": "admin",
+    "email": "admin@threatfusion.local",
+    "role": "Admin"
+  },
+  {
+    "username": "analyst_soc",
+    "email": "analyst@threatfusion.local",
+    "role": "Analyst"
+  },
+  {
+    "username": "guest_observer",
+    "email": "guest@threatfusion.local",
+    "role": "ReadOnly"
+  }
+]

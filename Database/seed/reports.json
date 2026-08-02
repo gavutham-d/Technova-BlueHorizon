@@ -1,0 +1,11 @@
+[
+  {
+    "report_name": "Weekly CTI Summary",
+    "generated_at": "2026-08-01",
+    "metrics": {
+      "alerts": 42,
+      "critical": 7,
+      "high": 13
+    }
+  }
+]

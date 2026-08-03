@@ -1,88 +1,261 @@
 # Threat Fusion CTI Platform
 
-Threat Fusion is an automated Cyber Threat Intelligence (CTI) Aggregation Platform featuring Zero Trust access control, real-time STIX 2.1 normalization, threat intelligence enrichment, and AI-driven SOC analysis.
+Threat Fusion is a Cyber Threat Intelligence (CTI) Aggregation Platform that centralizes threat indicators, performs STIX 2.1 normalization, enriches intelligence with MITRE ATT&CK and CVE information, and provides an interactive SOC dashboard for cybersecurity analysts.
+
+---
 
 ## Features
-- **Zero Trust Security**: JWT-based session tokens with Least Privilege Role-Based Access Control (RBAC).
-- **Log Parsing & STIX Normalization**: Automated extractors parsing Syslog, Firewalls, and SIEM logs into structured STIX 2.1 IOCs.
-- **Vulnerability & ATT&CK Enrichment**: Live vulnerability CVSS calculations and MITRE ATT&CK technique matrix mapping.
-- **Machine Learning Threat Hunting**:
-  - **Random Forest**: Threat severity classification.
-  - **XGBoost**: CTI risk rating regression.
-  - **Isolation Forest**: User behavior audit log anomaly detection.
-  - **DBSCAN**: Concentric threat campaign clustering.
-- **Glassmorphic SOC Dashboard**: Cyberpunk UI featuring interactive Recharts visualization and high-performance Campaign relationship graphs.
+
+- **Zero Trust Authentication**
+  - JWT-based authentication
+  - Role-Based Access Control (RBAC)
+  - Default administrator account created during application initialization
+
+- **Threat Intelligence Aggregation**
+  - Centralized Indicator of Compromise (IOC) management
+  - STIX 2.1 normalization
+  - MITRE ATT&CK technique mapping
+  - CVE and CVSS enrichment
+
+- **Threat Hunting**
+  - IOC search and filtering
+  - Campaign relationship visualization
+  - Threat feed monitoring
+  - Interactive SOC dashboard
+
+- **Machine Learning Analysis**
+  - Random Forest for threat severity classification
+  - XGBoost for CTI risk scoring
+  - Isolation Forest for anomaly detection
+  - DBSCAN for threat campaign clustering
+
+- **Security Operations Center Dashboard**
+  - Real-time analytics
+  - Alert management
+  - Threat feed status
+  - Reports and metrics
+  - User management
+  - System settings
 
 ---
 
-## Technical Stack
-- **Database**: MongoDB 6.0 (Docker-based).
-- **Backend API**: FastAPI (Python 3.14), Uvicorn, Motor, Pydantic V2, JWT.
-- **Frontend Client**: React 19, Vite, TypeScript, Tailwind CSS, Recharts, Axios.
+# Technical Stack
+
+| Layer | Technology |
+|--------|------------|
+| Frontend | React 19, Vite, TypeScript |
+| Styling | Tailwind CSS |
+| Charts | Recharts |
+| HTTP Client | Axios |
+| Backend | FastAPI |
+| Runtime | Python 3.14 |
+| ASGI Server | Uvicorn |
+| Validation | Pydantic V2 |
+| Authentication | JWT |
+| Database | MongoDB 6.0 |
+| Database Driver | Motor |
+| Containerization | Docker & Docker Compose |
 
 ---
 
-## Execution Guide
+# Project Structure
 
-### Prerequisites
-Make sure you have [Docker](https://www.docker.com/) and [Node.js (v18+)](https://nodejs.org/) installed.
+```
+ThreatFusion/
+│
+├── backend/
+│   ├── app/
+│   ├── requirements.txt
+│   └── ...
+│
+├── frontend/
+│   ├── src/
+│   ├── public/
+│   └── ...
+│
+├── mongo-init/
+│   └── init.js
+│
+├── docker-compose.yml
+└── README.md
+```
 
-### 1. Database (MongoDB) Setup
-Launch the MongoDB instance using Docker Compose:
+---
+
+# Prerequisites
+
+Install the following software before running the project:
+
+- Docker Desktop
+- Docker Compose
+- Python 3.14
+- pip
+- Node.js 18+
+- npm
+
+Verify installation:
+
+```bash
+docker --version
+docker compose version
+python --version
+pip --version
+node -v
+npm -v
+```
+
+---
+
+# Running the Project
+
+## 1. Start MongoDB
+
+From the project root:
+
 ```bash
 docker compose up -d
 ```
-This spins up the database container on port `27017` with persistent volumes.
 
-### 2. Backend API Setup
-Change to the backend directory, activate the Python virtual environment, and start the FastAPI dev server:
+Verify the container:
+
+```bash
+docker ps
+```
+
+You should see the MongoDB container running on port **27017**.
+
+---
+
+## 2. Start the Backend
+
+Navigate to the backend directory:
+
 ```bash
 cd backend
+```
+
+Create a virtual environment (first time only):
+
+```bash
+python -m venv venv
+```
+
+Activate it.
+
+Linux / macOS
+
+```bash
 source venv/bin/activate
+```
+
+Windows
+
+```cmd
+venv\Scripts\activate
+```
+
+Install dependencies:
+
+```bash
 pip install -r requirements.txt
+```
+
+Start the FastAPI server:
+
+```bash
 uvicorn app.main:app --reload --port 8000
 ```
-- The interactive Swagger docs will be available at: [http://localhost:8000/docs](http://localhost:8000/docs)
-- Default credentials created on startup: `admin` / `admin123`
 
-### 3. Frontend Client Setup
-Change to the frontend directory, install npm packages, and run the Vite dev server:
-```bash
-cd frontend
-npm install
-npm run dev
+Backend URL
+
 ```
-- Open the client portal in your browser at: [http://localhost:5173/](http://localhost:5173/)
+http://localhost:8000
+```
 
-### 4. Running Automated Tests
-To run the automated Python backend and ML validation test suites:
-```bash
-cd backend
-source venv/bin/activate
-python -m pytest
+Swagger API Documentation
+
+```
+http://localhost:8000/docs
 ```
 
 ---
 
-## Deployment Guide (Production)
+## 3. Start the Frontend
 
-### Option A: Dockerized Deployment (Recommended)
-You can deploy both the API and MongoDB services in a production container stack. Create a production `docker-compose.prod.yml` or run standard containers behind an Nginx proxy:
-1. Build and tag the backend container using standard docker definitions.
-2. Serve the built React static assets via Nginx or a CDN (Cloudflare/AWS S3).
+Open another terminal.
 
-### Option B: Bare-Metal / Virtual Private Server (VPS)
-1. **Frontend Bundle**:
-   Build Vite production assets:
-   ```bash
-   cd frontend
-   npm run build
-   ```
-   This generates a static bundle in `frontend/dist/`. Serve these static files using Nginx or Caddy.
-2. **Backend Daemon (Uvicorn / Gunicorn)**:
-   For production environments, run Uvicorn under Gunicorn as a process manager with multiple worker processes:
-   ```bash
-   gunicorn app.main:app -w 4 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000 --daemon
-   ```
-3. **Database Maintenance**:
-   Enable indexing and replication filters in MongoDB config for production scaling.
+```bash
+cd frontend
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
+
+```bash
+npm run dev
+```
+
+Frontend URL
+
+```
+http://localhost:5173
+```
+
+---
+
+# Default Login Credentials
+
+The backend automatically creates the administrator account during initialization.
+
+| Username | Password | Role |
+|----------|----------|------|
+| admin | admin123 | Admin |
+
+---
+
+# API Documentation
+
+Once the backend is running, interactive API documentation is available at:
+
+```
+http://localhost:8000/docs
+```
+
+---
+
+# Database
+
+MongoDB runs inside Docker using Docker Compose.
+
+The database is automatically initialized when the container starts.
+
+Database documentation, schema, ER diagrams, and sample datasets are available in the repository's top-level **Database/** directory.
+
+---
+
+# Running Tests
+
+Backend tests:
+
+```bash
+cd backend
+
+source venv/bin/activate
+
+pytest
+```
+
+---
+
+# Notes
+
+- Ensure Docker is running before starting the backend.
+- Start MongoDB before launching the FastAPI server.
+- Start the backend before running the frontend.
+- The frontend communicates with the backend at `http://localhost:8000/api`.
+- MongoDB data is persisted using Docker volumes.
